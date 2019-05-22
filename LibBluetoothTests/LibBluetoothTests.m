@@ -7,11 +7,11 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "LibBluetooth/SCCoreBluetooth.h"
+#import <LibBluetooth/SCCoreBluetooth.h>
 
 @interface LibBluetoothTests : XCTestCase
 {
-    SCBluetooth* bt_;
+    SCBluetooth* scb_;
 }
 @end
 
@@ -19,7 +19,7 @@
 
 - (void)setUp {
     // Put setup code here. This method is called before the invocation of each test method in the class.
-    bt_ = [[SCBluetooth alloc] init];
+    scb_ = [SCBluetooth new];
 }
 
 - (void)tearDown {

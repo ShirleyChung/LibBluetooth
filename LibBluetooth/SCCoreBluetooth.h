@@ -14,11 +14,26 @@
 
 @interface SCBluetooth: NSObject<CBPeripheralManagerDelegate, CBCentralManagerDelegate>
 {
-    CBPeripheralManager* cbpermgr_;
-    CBCentralManager* cbmgr_;
-    NSMutableArray* characteristicArray_;
+    // Per
+    CBPeripheralManager* peripheral_;
+    NSMutableArray* characteristics_;
+    NSUserDefaults* userDef_;
+    NSString* devName_;
+    
+    CBCentralManager* central_;
+
+    CBCharacteristic* writeChararteristic_;
 }
+
+- (id) initWithName:(NSString*) name;
+
 - (void) initCoreBluetooth;
+
+- (void) runThreadCharateristicData;
+
+- (void) sendServerData: (NSData*) data;
+
+- (void) sendClientData: (NSData*) data;
 
 @end
 

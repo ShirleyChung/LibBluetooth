@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E47C5C1B228C159700372F6A"
+               BlueprintIdentifier = "E4F90639228EE3950046A889"
                BuildableName = "LibBluetoothTests.xctest"
                BlueprintName = "LibBluetoothTests"
                ReferencedContainer = "container:LibBluetooth.xcodeproj">
@@ -52,7 +52,7 @@
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Debug"
+      buildConfiguration = "Release"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"

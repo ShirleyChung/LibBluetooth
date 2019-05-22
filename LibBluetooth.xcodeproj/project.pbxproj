@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E4320427228E8B9E00585216 /* LibBluetoothTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E4320426228E8B9E00585216 /* LibBluetoothTests.m */; };
-		E4320429228E8B9E00585216 /* LibBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47C5C13228C159700372F6A /* LibBluetooth.framework */; };
 		E47C5C24228C159700372F6A /* LibBluetooth.h in Headers */ = {isa = PBXBuildFile; fileRef = E47C5C16228C159700372F6A /* LibBluetooth.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E47C5C31228D336300372F6A /* SCCoreBluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = E47C5C30228D336300372F6A /* SCCoreBluetooth.m */; };
 		E47C5C35228DB23500372F6A /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47C5C34228DB23500372F6A /* CoreBluetooth.framework */; };
@@ -16,20 +14,7 @@
 		E47C5C38228E856F00372F6A /* SCCoreBluetooth.h in Headers */ = {isa = PBXBuildFile; fileRef = E47C5C32228D395F00372F6A /* SCCoreBluetooth.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		E432042A228E8B9E00585216 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E47C5C0A228C159600372F6A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E47C5C12228C159700372F6A;
-			remoteInfo = LibBluetooth;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		E4320424228E8B9E00585216 /* LibBluetoothTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LibBluetoothTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E4320426228E8B9E00585216 /* LibBluetoothTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LibBluetoothTests.m; sourceTree = "<group>"; };
-		E4320428228E8B9E00585216 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E47C5C13228C159700372F6A /* LibBluetooth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LibBluetooth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E47C5C16228C159700372F6A /* LibBluetooth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LibBluetooth.h; sourceTree = "<group>"; };
 		E47C5C17228C159700372F6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -37,17 +22,11 @@
 		E47C5C32228D395F00372F6A /* SCCoreBluetooth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCCoreBluetooth.h; sourceTree = "<group>"; };
 		E47C5C34228DB23500372F6A /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		E47C5C36228E5CBD00372F6A /* LibBluetooth.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LibBluetooth.m; sourceTree = "<group>"; };
+		E4F9064D2290AD900046A889 /* LibBluetoothMac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LibBluetoothMac.h; sourceTree = "<group>"; };
+		E4F9064E2290AD900046A889 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		E4320421228E8B9E00585216 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E4320429228E8B9E00585216 /* LibBluetooth.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E47C5C10228C159700372F6A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -59,20 +38,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E4320425228E8B9E00585216 /* LibBluetoothTests */ = {
-			isa = PBXGroup;
-			children = (
-				E4320426228E8B9E00585216 /* LibBluetoothTests.m */,
-				E4320428228E8B9E00585216 /* Info.plist */,
-			);
-			path = LibBluetoothTests;
-			sourceTree = "<group>";
-		};
 		E47C5C09228C159600372F6A = {
 			isa = PBXGroup;
 			children = (
 				E47C5C15228C159700372F6A /* LibBluetooth */,
-				E4320425228E8B9E00585216 /* LibBluetoothTests */,
+				E4F9064C2290AD900046A889 /* LibBluetoothMac */,
 				E47C5C14228C159700372F6A /* Products */,
 				E47C5C33228DB23500372F6A /* Frameworks */,
 			);
@@ -82,7 +52,6 @@
 			isa = PBXGroup;
 			children = (
 				E47C5C13228C159700372F6A /* LibBluetooth.framework */,
-				E4320424228E8B9E00585216 /* LibBluetoothTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -107,6 +76,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E4F9064C2290AD900046A889 /* LibBluetoothMac */ = {
+			isa = PBXGroup;
+			children = (
+				E4F9064D2290AD900046A889 /* LibBluetoothMac.h */,
+				E4F9064E2290AD900046A889 /* Info.plist */,
+			);
+			path = LibBluetoothMac;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -122,24 +100,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		E4320423228E8B9E00585216 /* LibBluetoothTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E432042E228E8B9E00585216 /* Build configuration list for PBXNativeTarget "LibBluetoothTests" */;
-			buildPhases = (
-				E4320420228E8B9E00585216 /* Sources */,
-				E4320421228E8B9E00585216 /* Frameworks */,
-				E4320422228E8B9E00585216 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E432042B228E8B9E00585216 /* PBXTargetDependency */,
-			);
-			name = LibBluetoothTests;
-			productName = LibBluetoothTests;
-			productReference = E4320424228E8B9E00585216 /* LibBluetoothTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		E47C5C12228C159700372F6A /* LibBluetooth */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E47C5C27228C159700372F6A /* Build configuration list for PBXNativeTarget "LibBluetooth" */;
@@ -168,9 +128,6 @@
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "鐘妘甄";
 				TargetAttributes = {
-					E4320423228E8B9E00585216 = {
-						CreatedOnToolsVersion = 10.2.1;
-					};
 					E47C5C12228C159700372F6A = {
 						CreatedOnToolsVersion = 10.2.1;
 					};
@@ -189,19 +146,11 @@
 			projectRoot = "";
 			targets = (
 				E47C5C12228C159700372F6A /* LibBluetooth */,
-				E4320423228E8B9E00585216 /* LibBluetoothTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		E4320422228E8B9E00585216 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E47C5C11228C159700372F6A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -212,14 +161,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		E4320420228E8B9E00585216 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E4320427228E8B9E00585216 /* LibBluetoothTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E47C5C0F228C159700372F6A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -231,49 +172,7 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		E432042B228E8B9E00585216 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E47C5C12228C159700372F6A /* LibBluetooth */;
-			targetProxy = E432042A228E8B9E00585216 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
-		E432042C228E8B9E00585216 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P3XHPGJ3P8;
-				INFOPLIST_FILE = LibBluetoothTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = shirley.LibBluetoothTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		E432042D228E8B9E00585216 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P3XHPGJ3P8;
-				INFOPLIST_FILE = LibBluetoothTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = shirley.LibBluetoothTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		E47C5C25228C159700372F6A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -413,6 +312,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = shirley.LibBluetooth;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -438,6 +338,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = shirley.LibBluetooth;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -449,15 +350,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E432042E228E8B9E00585216 /* Build configuration list for PBXNativeTarget "LibBluetoothTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E432042C228E8B9E00585216 /* Debug */,
-				E432042D228E8B9E00585216 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		E47C5C0D228C159600372F6A /* Build configuration list for PBXProject "LibBluetooth" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

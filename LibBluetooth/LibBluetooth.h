@@ -6,7 +6,7 @@
 //  Copyright © 2019 鐘妘甄. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for LibBluetooth.
 FOUNDATION_EXPORT double LibBluetoothVersionNumber;
