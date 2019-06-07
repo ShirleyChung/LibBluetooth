@@ -14,26 +14,39 @@
 
 @interface SCBluetooth: NSObject<CBPeripheralManagerDelegate, CBCentralManagerDelegate>
 {
-    // Per
-    CBPeripheralManager* peripheral_;
-    NSMutableArray* characteristics_;
-    NSUserDefaults* userDef_;
-    NSString* devName_;
-    
-    CBCentralManager* central_;
+    NSUserDefaults*         userDef_;
+    CBUUID*                 peripheralUUID_;
 
-    CBCharacteristic* writeChararteristic_;
+    // Peripheral members
+    NSString*               peripheralName_;
+    CBPeripheralManager*    peripheral_;
+    NSMutableArray*         characteristics_;
+    bool                    bAdvertise_;
+
+    // Central members
+    NSString*               centralName_;
+    CBCentralManager*       central_;
+    CBCharacteristic*       writeChararteristic_;
+
 }
 
-- (id) initWithName:(NSString*) name;
+@property NSMutableSet* connectPeripherals;
 
-- (void) initCoreBluetooth;
+- (id) initCentralWithName:(NSString*) name;
+
+- (id) initPeripheralWithName:(NSString*) name;
+
+- (void) stopPeripheral;
+
+- (void) stopScan;
 
 - (void) runThreadCharateristicData;
 
 - (void) sendServerData: (NSData*) data;
 
-- (void) sendClientData: (NSData*) data;
+- (void) sendClientData:(CBPeripheral*) peripheral Data:(NSData*) data;
+
+- (void) addPeripheral: (CBPeripheral*) peripheral;
 
 @end
 

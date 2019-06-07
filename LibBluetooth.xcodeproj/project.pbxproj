@@ -12,6 +12,8 @@
 		E47C5C35228DB23500372F6A /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47C5C34228DB23500372F6A /* CoreBluetooth.framework */; };
 		E47C5C37228E5CBD00372F6A /* LibBluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = E47C5C36228E5CBD00372F6A /* LibBluetooth.m */; };
 		E47C5C38228E856F00372F6A /* SCCoreBluetooth.h in Headers */ = {isa = PBXBuildFile; fileRef = E47C5C32228D395F00372F6A /* SCCoreBluetooth.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E4F7718F2295901600BF0A89 /* SCLocationMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F7718D2295901600BF0A89 /* SCLocationMgr.m */; };
+		E4F771902295901600BF0A89 /* SCLocationMgr.h in Headers */ = {isa = PBXBuildFile; fileRef = E4F7718E2295901600BF0A89 /* SCLocationMgr.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,8 +24,8 @@
 		E47C5C32228D395F00372F6A /* SCCoreBluetooth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCCoreBluetooth.h; sourceTree = "<group>"; };
 		E47C5C34228DB23500372F6A /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		E47C5C36228E5CBD00372F6A /* LibBluetooth.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LibBluetooth.m; sourceTree = "<group>"; };
-		E4F9064D2290AD900046A889 /* LibBluetoothMac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LibBluetoothMac.h; sourceTree = "<group>"; };
-		E4F9064E2290AD900046A889 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E4F7718D2295901600BF0A89 /* SCLocationMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLocationMgr.m; sourceTree = "<group>"; };
+		E4F7718E2295901600BF0A89 /* SCLocationMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLocationMgr.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,7 +44,6 @@
 			isa = PBXGroup;
 			children = (
 				E47C5C15228C159700372F6A /* LibBluetooth */,
-				E4F9064C2290AD900046A889 /* LibBluetoothMac */,
 				E47C5C14228C159700372F6A /* Products */,
 				E47C5C33228DB23500372F6A /* Frameworks */,
 			);
@@ -59,6 +60,8 @@
 		E47C5C15228C159700372F6A /* LibBluetooth */ = {
 			isa = PBXGroup;
 			children = (
+				E4F7718E2295901600BF0A89 /* SCLocationMgr.h */,
+				E4F7718D2295901600BF0A89 /* SCLocationMgr.m */,
 				E47C5C16228C159700372F6A /* LibBluetooth.h */,
 				E47C5C17228C159700372F6A /* Info.plist */,
 				E47C5C30228D336300372F6A /* SCCoreBluetooth.m */,
@@ -76,15 +79,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E4F9064C2290AD900046A889 /* LibBluetoothMac */ = {
-			isa = PBXGroup;
-			children = (
-				E4F9064D2290AD900046A889 /* LibBluetoothMac.h */,
-				E4F9064E2290AD900046A889 /* Info.plist */,
-			);
-			path = LibBluetoothMac;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -94,6 +88,7 @@
 			files = (
 				E47C5C24228C159700372F6A /* LibBluetooth.h in Headers */,
 				E47C5C38228E856F00372F6A /* SCCoreBluetooth.h in Headers */,
+				E4F771902295901600BF0A89 /* SCLocationMgr.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +162,7 @@
 			files = (
 				E47C5C37228E5CBD00372F6A /* LibBluetooth.m in Sources */,
 				E47C5C31228D336300372F6A /* SCCoreBluetooth.m in Sources */,
+				E4F7718F2295901600BF0A89 /* SCLocationMgr.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

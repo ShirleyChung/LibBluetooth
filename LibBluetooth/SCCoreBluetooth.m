@@ -8,28 +8,47 @@
 
 #include "SCCoreBluetooth.h"
 
-#define SERVICE_KEY @"0000"
-
-CBPeripheral* connectPeripheral_;
+#define UUID_CEN  @"DADFAAA8-43F0-4EDB-A996-A31C6BFC68B4"
+#define UUID_CH1  @"C1E2094B-6940-4A4E-B52B-132BEC37B81A"
+#define UUID_CH2  @"751D831B-C9F1-4AEC-B94A-01E9647F5233"
 
 @implementation SCBluetooth
 
-- (id) init {
-    return [self initWithName:@"SCBluetooth"];
-}
+@synthesize connectPeripherals;
 
-- (id) initWithName:(NSString*) name {
-    self = [super init];
-    devName_ = name;
-    [self initCoreBluetooth];
+- (id) init {
+    self            = [super init];
+    userDef_        = [NSUserDefaults standardUserDefaults];
+    peripheralUUID_ = [CBUUID UUIDWithString:UUID_CEN];
+    bAdvertise_     = false;
+    connectPeripherals = [[NSMutableSet alloc] init];
     return self;
 }
 
-- (void) initCoreBluetooth {
-    characteristics_    = [[NSMutableArray alloc] init];
-    userDef_            = [NSUserDefaults standardUserDefaults];
-    central_            = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
-    peripheral_         = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];  // 這個會觸發 peripheralManagerDidUpdateState
+- (void) dealloc {
+    bAdvertise_     = false;
+}
+
+- (id) initCentralWithName:(NSString*) name {
+    centralName_ = name;
+    central_     = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+    return self;
+}
+
+- (id) initPeripheralWithName:(NSString*) name {
+    bAdvertise_     = true;
+    peripheralName_ = name;
+    peripheral_     = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];  // 這個會觸發 peripheralManagerDidUpdateState
+    characteristics_= [[NSMutableArray alloc] init];
+    return self;
+}
+
+- (void) stopPeripheral {
+    bAdvertise_     = false;
+}
+
+- (void) stopScan {
+    [central_ stopScan];
 }
 
 /* CBPeripheralManagerDelegates */
@@ -44,14 +63,14 @@ CBPeripheral* connectPeripheral_;
     
     peripheral.delegate = self;
     // 設定Service
-    CBMutableService* service = [[CBMutableService alloc] initWithType:[CBUUID UUIDWithString:SERVICE_KEY] primary:YES];
+    CBMutableService* service = [[CBMutableService alloc] initWithType:peripheralUUID_ primary:YES];
     // 設定Characteristic
     CBMutableCharacteristic* characteristic;
     // 第一個CC01提供訊息廣播用 CBCharacteristicPropertyNotify
-    characteristic = [[CBMutableCharacteristic alloc] initWithType:[CBUUID UUIDWithString:@"CC01"] properties:CBCharacteristicPropertyNotify value:nil permissions:CBAttributePermissionsReadable];
+    characteristic = [[CBMutableCharacteristic alloc] initWithType:[CBUUID UUIDWithString:UUID_CH1] properties:CBCharacteristicPropertyNotify|CBCharacteristicPropertyIndicate|CBCharacteristicPropertyRead value:nil permissions:CBAttributePermissionsReadable];
     [characteristics_ addObject:characteristic];
     // 第二個CC01提供接收資料 CBCharacteristicPropertyWrite
-    characteristic = [[CBMutableCharacteristic alloc] initWithType:[CBUUID UUIDWithString:@"CC02"] properties:CBCharacteristicPropertyWrite value:nil permissions:CBAttributePermissionsWriteable];
+    characteristic = [[CBMutableCharacteristic alloc] initWithType:[CBUUID UUIDWithString:UUID_CH2] properties:CBCharacteristicPropertyWrite value:nil permissions:CBAttributePermissionsWriteable];
     [characteristics_ addObject:characteristic];
     
     service.characteristics = characteristics_;
@@ -64,7 +83,7 @@ CBPeripheral* connectPeripheral_;
         NSLog(@"%@", [error localizedDescription]);
     }
     // 開始廣播，讓其它裝置可以看到自己
-    [peripheral_ startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey: @[service.UUID], CBAdvertisementDataLocalNameKey: devName_ }];
+    [peripheral_ startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey: @[service.UUID], CBAdvertisementDataLocalNameKey: peripheralName_ }];
 
     [self runThreadCharateristicData];
 }
@@ -74,7 +93,7 @@ CBPeripheral* connectPeripheral_;
     dispatch_queue_t q = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(q, ^{
         int i = 0;
-        while(true) {
+        while(bAdvertise_) {
             NSString* s = [NSString stringWithFormat:@"%d", i++];
             [self sendServerData:[s dataUsingEncoding:NSUTF8StringEncoding]];
             [NSThread sleepForTimeInterval:1.0];
@@ -92,7 +111,7 @@ CBPeripheral* connectPeripheral_;
 // 接收從central送過來的資料
 - (void) peripheralManager:(CBPeripheralManager *)peripheral didReceiveWriteRequests:(NSArray<CBATTRequest *> *)requests {
     CBATTRequest* att = [requests objectAtIndex:0];
-    NSLog(@"%@", [[NSString alloc] initWithData:att.value encoding:NSUTF8StringEncoding]);
+    NSLog(@"recv from center: %@", [[NSString alloc] initWithData:att.value encoding:NSUTF8StringEncoding]);
 }
 
 /* CBCentralManagerDelegates */
@@ -113,32 +132,35 @@ CBPeripheral* connectPeripheral_;
 
 // 找到周邊，以connectPeripheral來連接
 - (void) centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *,id> *)advertisementData RSSI:(NSNumber *)RSSI {
-    if (peripheral != nil) {
-        NSLog(@"found: %@", peripheral.name);
-        if (peripheral.name != nil)
-        {
-            connectPeripheral_ = peripheral; /* 連接上的周邊保存reference以免被釋放掉 */
-            connectPeripheral_.delegate = self;
-            [central connectPeripheral:peripheral options:nil];
-            [central stopScan];
-        }
-    }else
-        NSLog(@"peripheral is nil");
+    NSLog(@"found: %@", peripheral.name);
+//       if (peripheral.name != nil)
+//       {
+//        connectPeripheral_ = peripheral; /* 連接上的周邊保存reference以免被釋放掉 */
+        peripheral.delegate = self;
+        [connectPeripherals addObject:peripheral];
+        [central connectPeripheral:peripheral options:nil];
+//            [central stopScan];
+//       }
+}
+
+
+- (void) addPeripheral: (CBPeripheral*) peripheral {
     
 }
 
+
 // 連接上周邊之後，掃描裝置具有的Service
 - (void) centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
-    NSArray* arr = [[NSArray alloc] initWithObjects: [CBUUID UUIDWithString:SERVICE_KEY], nil];
-    
-    [peripheral discoverServices:arr]; // 搜尋Service == @"0000", 會觸發didDiscoverServices
+
+    [peripheral discoverServices:nil]; // 會觸發didDiscoverServices
 }
 
 // 從所有Service中，尋找所包函的chararteristics
 - (void) peripheral:(CBPeripheral*)peripheral didDiscoverServices:(nullable NSError *)error {
     for (CBService* service in peripheral.services) {
         // NSArray* arr = [[NSArray alloc] initWithObjects: [CBUUID UUIDWithString:@"CC01"], nil];
-        [connectPeripheral_ discoverCharacteristics:nil forService:service];
+        NSLog(@"service's UUID: %@", service.UUID);
+        [peripheral discoverCharacteristics:nil forService:service];
     }
 }
 
@@ -164,8 +186,8 @@ CBPeripheral* connectPeripheral_;
 }
 
 // 送資料給Client
-- (void) sendClientData: (NSData*) data {
-    [connectPeripheral_ writeValue:data forCharacteristic:writeChararteristic_ type:CBCharacteristicWriteWithResponse];
+- (void) sendClientData:(CBPeripheral*) peripheral Data: (NSData*) data {
+    [peripheral writeValue:data forCharacteristic:writeChararteristic_ type:CBCharacteristicWriteWithResponse];
 }
 
 @end
